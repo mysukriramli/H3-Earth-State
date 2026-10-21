@@ -1,0 +1,2 @@
+{"event_id": "usgs_nc73891", "timestamp": "2026-10-21T08:12:00Z", "h3_res6_id": "86283082fffffff", "source": "USGS", "modality": "seismic_events", "attributes": {"magnitude": 4.6, "depth_km": 10.0, "place": "Tokyo, Japan"}}
+{"event_id": "gdelt_12345", "timestamp": "2026-10-21T08:15:00Z", "h3_res6_id": "86283082fffffff", "source": "GDELT", "modality": "human_events", "attributes": {"cameo_event_code": "141", "goldstein_scale": -6.5, "num_mentions": 40}}
