@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import json
 import logging
@@ -6,7 +7,7 @@ import io
 import requests
 import pandas as pd
 from datetime import datetime, timezone
-from h3_utils import get_h3_id
+from .h3_utils import get_h3_id
 
 logging.basicConfig(level=logging.INFO)
 
