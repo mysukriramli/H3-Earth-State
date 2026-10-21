@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "H3AgentEvalContract",
+  "type": "object",
+  "properties": {
+    "eval_id": { "type": "string" },
+    "question": { "type": "string", "minLength": 15 },
+    "choices": { "type": "array", "items": { "type": "string" }, "minItems": 4, "maxItems": 4 },
+    "answer_index": { "type": "integer", "minimum": 0, "maximum": 3 },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "h3_res6_id": { "type": "string" },
+        "date": { "type": "string" },
+        "human_event_count": { "type": ["integer", "null"] },
+        "max_seismic_magnitude": { "type": ["number", "null"] }
+      },
+      "required": ["h3_res6_id", "date"]
+    }
+  },
+  "required": ["eval_id", "question", "choices", "answer_index", "metadata"],
+  "additionalProperties": false
+}
