@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 H3-Earth-State Master Orchestrator
-Executes the data flywheel: Ingestion -> Normalization -> Anomalies -> Evals.
+Executes the data flywheel: Ingestion -> Normalization -> Anomalies -> Evals -> Entity Resolution -> Provenance.
 """
 
 import logging
@@ -9,6 +9,8 @@ from ingesters import ingest_usgs, ingest_firms, ingest_gdelt
 import normalize
 import anomalies
 import generate_evals
+import entity_resolution
+import generate_manifest
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
@@ -54,6 +56,20 @@ def main():
         generate_evals.run()
     except Exception as e:
         logging.error(f"Eval generation failed: {e}")
+
+    # Phase 5: Convert H3 IDs to Named Entities via Wikipedia GeoSearch
+    logging.info("--- PHASE 5: ENTITY RESOLUTION ---")
+    try:
+        entity_resolution.run()
+    except Exception as e:
+        logging.error(f"Entity resolution failed: {e}")
+
+    # Phase 6: Cryptographic Hashing and Provenance
+    logging.info("--- PHASE 6: PROVENANCE MANIFEST ---")
+    try:
+        generate_manifest.run()
+    except Exception as e:
+        logging.error(f"Manifest generation failed: {e}")
 
     logging.info("Pipeline Cycle Complete.")
 
