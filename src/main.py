@@ -4,7 +4,17 @@ H3-Earth-State Master Orchestrator
 Executes the data flywheel: Ingestion -> Normalization -> Anomalies -> Evals -> Entity Resolution -> Provenance.
 """
 
+import sys
+import os
 import logging
+
+# --- PATH FIX: Ensure Python knows where to find the sibling files ---
+# This forces Python to look inside the 'src' folder for our scripts
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
+
+# Now the imports will work regardless of where the script is executed from
 from ingesters import ingest_usgs, ingest_firms, ingest_gdelt
 import normalize
 import anomalies
