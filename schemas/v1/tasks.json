@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "H3AgentTaskContract",
+  "type": "object",
+  "properties": {
+    "task_id": { "type": "string" },
+    "priority": { "type": "string", "enum": ["P0_CRITICAL", "P1_HIGH", "P2_ELEVATED"] },
+    "target_h3": { "type": "string", "minLength": 15, "maxLength": 15 },
+    "anomaly_type": { "type": "string" },
+    "affected_entities": { "type": "array", "items": { "type": "string" } },
+    "actionable_objective": { "type": "string", "minLength": 10 },
+    "required_agent_capabilities": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "payload_context": {
+      "type": "object",
+      "properties": {
+        "seismic_magnitude": { "type": "number" },
+        "thermal_mw": { "type": "number" },
+        "human_event_count": { "type": "integer" }
+      },
+      "required": ["seismic_magnitude", "thermal_mw", "human_event_count"]
+    },
+    "created_at_utc": { "type": "string" }
+  },
+  "required": [
+    "task_id",
+    "priority",
+    "target_h3",
+    "anomaly_type",
+    "affected_entities",
+    "actionable_objective",
+    "required_agent_capabilities",
+    "payload_context",
+    "created_at_utc"
+  ],
+  "additionalProperties": false
+}
