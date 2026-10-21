@@ -39,14 +39,15 @@ jobs:
           git config user.name "earth-state-bot[bot]"
           git config user.email "earth-state-bot@users.noreply.github.com"
           
-          # Stage the rolling latest data and the permanent snapshots
-          git add -A latest/ snapshots/
+          # Stage the rolling latest data, permanent snapshots, and provenance manifests
+          git add -A latest/ snapshots/ manifests/
           
           if git diff --staged --quiet; then
             echo "No new world events detected in this cycle. Skipping commit."
           else
-            git commit -m "chore(state): autonomously update world graph and agent evals [skip ci]"
+            git commit -m "chore(state): autonomously update world graph and manifests [skip ci]"
             # Rebase ensures we don't fail if human commits occurred during the run
             git pull --rebase origin main
             git push origin main
           fi
+ 
