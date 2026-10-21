@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 H3-Earth-State Master Orchestrator
-Executes the data flywheel sequentially across all 7 operational phases:
-1. Ingestion -> 2. Normalization -> 3. Anomaly Detection -> 4. Zero-Day Evals ->
-5. Entity Resolution -> 6. Machine Task Queue -> 7. Cryptographic Provenance.
+Executes the data flywheel with integrated schema contract gatekeeping:
+1. Ingest -> 2. Normalize -> 3. Anomalies -> 4. Evals -> 5. Entities ->
+6. Tasks -> 7. Quality & Contract Validation -> 8. Cryptographic Manifest.
 """
 
 import sys
@@ -12,7 +12,6 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-# Explicit multi-path resolution ensuring imports resolve across environments
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(current_dir)
 
@@ -20,13 +19,13 @@ for p in [current_dir, root_dir]:
     if p not in sys.path:
         sys.path.insert(0, p)
 
-# Module imports
 from ingesters import ingest_usgs, ingest_firms, ingest_gdelt
 import normalize
 import anomalies
 import generate_evals
 import entity_resolution
 import generate_tasks
+import validate_contracts
 import generate_manifest
 
 def run_ingestion():
@@ -56,7 +55,7 @@ def main():
         normalize.run()
     except Exception as e:
         logging.error(f"Normalization failed: {e}")
-        return
+        sys.exit(1)
 
     # Phase 3: Statistical Baseline and Cross-Domain Anomaly Detection
     logging.info("--- PHASE 3: ANOMALY DETECTION ---")
@@ -86,14 +85,22 @@ def main():
     except Exception as e:
         logging.error(f"Task generation failed: {e}")
 
-    # Phase 7: Compute SHA-256 Checksums and Emit Provenance Manifest
-    logging.info("--- PHASE 7: PROVENANCE MANIFEST ---")
+    # Phase 7: Automated Quality Validation & Schema Contract Testing
+    logging.info("--- PHASE 7: AUTOMATED QA & CONTRACT TESTING ---")
+    try:
+        validate_contracts.run()
+    except Exception as e:
+        logging.error(f"CRITICAL CONTRACT BREACH: Pipeline aborted prior to staging: {e}")
+        sys.exit(1)
+
+    # Phase 8: Compute SHA-256 Checksums and Emit Provenance Manifest
+    logging.info("--- PHASE 8: PROVENANCE MANIFEST ---")
     try:
         generate_manifest.run()
     except Exception as e:
         logging.error(f"Manifest generation failed: {e}")
 
-    logging.info("H3-Earth-State Complete Flywheel Execution Successful.")
+    logging.info("H3-Earth-State Flywheel Cycle Completed Successfully.")
 
 if __name__ == "__main__":
     main()
