@@ -23,7 +23,6 @@ def run():
         logging.warning(f"No data found in {INPUT_FILE}. Skipping normalization.")
         return
 
-    # Determine dynamic archive path based on today's UTC date
     now = datetime.now(timezone.utc)
     date_str = now.strftime("%Y-%m-%d")
     year_str = now.strftime("%Y")
@@ -33,12 +32,9 @@ def run():
     os.makedirs(archive_dir, exist_ok=True)
     parquet_out = os.path.join(archive_dir, f"{date_str}.parquet")
 
-    # Connect to an in-memory DuckDB instance
     con = duckdb.connect(database=':memory:')
 
     try:
-        # Step 1: Read heterogeneous JSONL safely as raw JSON objects
-        # This prevents schema inference crashes when different events have different attributes.
         con.execute(f"""
             CREATE TEMP TABLE raw_events AS
             SELECT
@@ -49,8 +45,6 @@ def run():
             FROM read_json_objects('{INPUT_FILE}');
         """)
 
-        # Step 2: Aggregate into the Canonical World State Grid
-        # Group by H3 Hexagon and Date to create a single unified node state.
         con.execute("""
             CREATE TEMP TABLE world_state AS
             SELECT
@@ -65,11 +59,9 @@ def run():
             GROUP BY h3_res6_id, event_date;
         """)
 
-        # Step 3: Export to Permanent Parquet Archive
         con.execute(f"COPY world_state TO '{parquet_out}' (FORMAT PARQUET);")
         logging.info(f"Successfully wrote permanent grid snapshot to {parquet_out}")
 
-        # Step 4: Export to Latest JSON for fast Web Agent consumption
         os.makedirs(os.path.dirname(LATEST_JSON_OUT), exist_ok=True)
         con.execute(f"COPY world_state TO '{LATEST_JSON_OUT}' (FORMAT JSON, ARRAY TRUE);")
         logging.info(f"Successfully updated active agent endpoint at {LATEST_JSON_OUT}")
