@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "generated_at": "2026-10-21T14:54:31.759293+00:00",
+    "schema_version": "1.0.0",
+    "license": "CC-BY-4.0",
+    "repository": "H3-Earth-State",
+    "description": "Cryptographic verification manifest for autonomous agent trust."
+  },
+  "sources": {
+    "NASA_FIRMS": "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_Global_24h.csv",
+    "USGS_SEISMIC": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
+    "GDELT_GEOPOLITICAL": "http://data.gdeltproject.org/gdeltv2/lastupdate.txt"
+  },
+  "artifacts": {
+    "latest/world_state.json": {
+      "sha256": "a99309cc72d7615d183ac71f67d37b00bb86a87bae0cafb8e5872e19e1cbe82a",
+      "size_bytes": 6432
+    },
+    "snapshots/year=2026/month=10/2026-10-21.parquet": {
+      "sha256": "f261d72529f5b3b0fdffcdf33d8a1e7e66ae834610deafae8f0316bbac356269",
+      "size_bytes": 1859
+    }
+  }
+}
