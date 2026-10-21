@@ -1,0 +1,52 @@
+name: H3-Earth-State Autonomous Flywheel
+
+on:
+  schedule:
+    # Runs 4 times a day (every 6 hours)
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allows manual trigger from the GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out repository
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git clone --depth 1 "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" .
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --break-system-packages --upgrade pip
+          python3 -m pip install --break-system-packages -r requirements.txt
+
+      - name: Execute H3-Earth-State Master Orchestrator
+        run: |
+          python3 src/main.py
+
+      - name: Commit and push world state updates
+        run: |
+          git config user.name "earth-state-bot[bot]"
+          git config user.email "earth-state-bot@users.noreply.github.com"
+          
+          # Stage the rolling latest data and the permanent snapshots
+          git add -A latest/ snapshots/
+          
+          if git diff --staged --quiet; then
+            echo "No new world events detected in this cycle. Skipping commit."
+          else
+            git commit -m "chore(state): autonomously update world graph and agent evals [skip ci]"
+            # Rebase ensures we don't fail if human commits occurred during the run
+            git pull --rebase origin main
+            git push origin main
+          fi
