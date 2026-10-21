@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "H3AnomalyContract",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "h3_res6_id": { "type": "string", "minLength": 15, "maxLength": 15 },
+      "anomaly_date": { "type": "string", "format": "date" },
+      "human_event_count": { "type": "integer", "minimum": 0 },
+      "max_thermal_intensity_mw": { "type": "number", "minimum": 0.0 },
+      "max_seismic_magnitude": { "type": "number", "minimum": 0.0 },
+      "dominant_cameo_event_code": { "type": ["string", "null"] },
+      "anomaly_type": { "type": "string", "minLength": 3 }
+    },
+    "required": [
+      "h3_res6_id",
+      "anomaly_date",
+      "human_event_count",
+      "max_thermal_intensity_mw",
+      "max_seismic_magnitude",
+      "anomaly_type"
+    ],
+    "additionalProperties": false
+  }
+}
