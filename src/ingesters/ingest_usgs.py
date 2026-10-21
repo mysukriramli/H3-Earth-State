@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
 import os
 import json
 import logging
 from datetime import datetime, timezone
 import requests
-from h3_utils import get_h3_id
+from .h3_utils import get_h3_id
 
 logging.basicConfig(level=logging.INFO)
 
