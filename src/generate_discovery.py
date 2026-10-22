@@ -133,7 +133,7 @@ def build_llms_full_txt(metrics: dict, now_iso: str) -> str:
     lines.extend([
         "## Active Physical & Political Disruptions",
         ""
-    ]
+    ])
 
     if os.path.exists(ANOMALIES_FILE):
         try:
