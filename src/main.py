@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 H3-Earth-State Master Orchestrator
-Executes the data flywheel with integrated historical compaction:
+Executes the full 11-phase data flywheel:
 1. Ingest -> 2. Normalize -> 3. Anomalies -> 4. Evals -> 5. Entities ->
-6. Tasks -> 7. Quality Contracts -> 8. Monthly Compaction -> 9. Provenance Manifest.
+6. Tasks -> 7. Contracts -> 8. Compaction -> 9. Discovery -> 10. Benchmark Harness -> 11. Provenance.
 """
 
 import sys
@@ -27,6 +27,8 @@ import entity_resolution
 import generate_tasks
 import validate_contracts
 import compact_history
+import generate_discovery
+import benchmark_harness
 import generate_manifest
 
 def run_ingestion():
@@ -94,15 +96,29 @@ def main():
         logging.error(f"CRITICAL CONTRACT BREACH: Pipeline aborted prior to staging: {e}")
         sys.exit(1)
 
-    # Phase 8: Long-Term Historical Compaction (Compacts past months)
+    # Phase 8: Long-Term Historical Compaction (Compacts completed months)
     logging.info("--- PHASE 8: HISTORICAL COMPACTION ---")
     try:
         compact_history.run()
     except Exception as e:
-        logging.error(f"Compaction phase encountered an issue: {e}")
+        logging.error(f"Compaction encountered an issue: {e}")
 
-    # Phase 9: Compute SHA-256 Checksums and Emit Provenance Manifest
-    logging.info("--- PHASE 9: PROVENANCE MANIFEST ---")
+    # Phase 9: Dynamic Discovery Manifest Compilation (llms.txt / llms-full.txt)
+    logging.info("--- PHASE 9: DISCOVERY MANIFEST GENERATION ---")
+    try:
+        generate_discovery.run()
+    except Exception as e:
+        logging.error(f"Discovery manifest generation failed: {e}")
+
+    # Phase 10: Automated Grounding Benchmark Harness
+    logging.info("--- PHASE 10: BENCHMARK HARNESS EXECUTION ---")
+    try:
+        benchmark_harness.run()
+    except Exception as e:
+        logging.error(f"Benchmark harness execution skipped/failed: {e}")
+
+    # Phase 11: Compute SHA-256 Checksums and Emit Provenance Manifest
+    logging.info("--- PHASE 11: PROVENANCE MANIFEST ---")
     try:
         generate_manifest.run()
     except Exception as e:
