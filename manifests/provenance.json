@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-10-22T01:13:41.070353+00:00",
+    "generated_at": "2026-10-22T02:59:43.866846+00:00",
     "schema_version": "1.1.0",
     "license": "CC-BY-4.0",
     "repository": "H3-Earth-State",
@@ -14,36 +14,36 @@
   },
   "artifacts": {
     "latest/world_state.json": {
-      "sha256": "a878546d2b15d07089a8aaac7f8a6095bb8d64461256e52cf91f5cc2522c73b1",
-      "size_bytes": 10152
+      "sha256": "be9b4a0d3f3459d27744af7321bc1c4869df0979738eaf17fbf9a9f3d62f3977",
+      "size_bytes": 10660
     },
     "latest/anomalies.json": {
-      "sha256": "e51eb1b97db5c2dc99fb6689ce02face64494419224b6c3849bba1c8ee164c43",
-      "size_bytes": 3213
+      "sha256": "b45c681534d92e14f44e6f5577b0701bd30dc73726b1f68a68cb4bbeca87093c",
+      "size_bytes": 6
     },
     "latest/evals.jsonl": {
-      "sha256": "d593429daff73cec0a03a6de1ed7384aaee956243709539d1f9dd4f917dd0980",
-      "size_bytes": 7035
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
     },
     "latest/entities.jsonl": {
-      "sha256": "0ef3a69309a90b3bc4c62aab9c29deee0e57ba595c1b407d75a344149aac2db6",
-      "size_bytes": 4359
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
     },
     "latest/tasks.jsonl": {
-      "sha256": "7ce1d543d465d898f36da8956266f53371852d5e6f8c7f0268127fa731817805",
-      "size_bytes": 8880
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
     },
     "latest/embeddings.parquet": {
       "sha256": "a0a67bb4686fad740f8c691deb94f4ce7f10b6693bdab11b3fb41f4ab305aee8",
       "size_bytes": 1564
     },
     "latest/health.json": {
-      "sha256": "28963931d5279712fe8e9c17150b0336ff8ab88753a071a51a449cc94659368f",
-      "size_bytes": 330
+      "sha256": "a6af93c1b480aab09164db98d150e765435aa52e001b0a582cbdb71de6f87f83",
+      "size_bytes": 332
     },
     "snapshots/year=2026/month=10/2026-10-22.parquet": {
-      "sha256": "e9505987358eca9ebf7ebe80597500d352377598a67586cdfc4f96f0d289a653",
-      "size_bytes": 2108
+      "sha256": "70c62609fa9e0fc6700d7634e1e5c73bd46e7614af10ab0563bff43a12f635c8",
+      "size_bytes": 2157
     }
   }
 }
