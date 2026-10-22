@@ -4,33 +4,37 @@ import json
 import logging
 import zipfile
 import io
-import requests
 import pandas as pd
 from datetime import datetime, timezone
 from .h3_utils import get_h3_id
+from circuit_breaker import resilient_get
 
 logging.basicConfig(level=logging.INFO)
 
 MASTER_LIST_URL = "http://data.gdeltproject.org/gdeltv2/lastupdate.txt"
 OUTPUT_FILE = "latest/events.jsonl"
 
-def run():
+def run() -> bool:
     logging.info("Ingesting GDELT Geopolitical Data...")
     
-    # 1. Get the URL for the latest 15-minute export zip
-    res = requests.get(MASTER_LIST_URL, timeout=10)
-    res.raise_for_status()
-    # Format: size hash url
-    export_url = res.text.split("\n")[0].split(" ")[-1]
-    
-    # 2. Download and unzip in memory
-    zip_res = requests.get(export_url, timeout=15)
-    with zipfile.ZipFile(io.BytesIO(zip_res.content)) as z:
-        csv_filename = z.namelist()[0]
-        with z.open(csv_filename) as f:
-            # GDELT v2 Export has 61 columns, no header
-            # Col 1: DATEADDED, Col 26: EventCode, Col 53: ActionGeo_Lat, Col 54: ActionGeo_Long
-            df = pd.read_csv(f, sep='\t', header=None, on_bad_lines='skip', low_memory=False)
+    res = resilient_get(MASTER_LIST_URL, circuit_name="GDELT_GEOPOLITICAL", timeout=12.0)
+    if res is None:
+        logging.error("GDELT master list fetch skipped due to circuit failure.")
+        return False
+
+    try:
+        export_url = res.text.split("\n")[0].split(" ")[-1]
+        zip_res = resilient_get(export_url, circuit_name="GDELT_EXPORT", timeout=18.0)
+        if zip_res is None:
+            return False
+
+        with zipfile.ZipFile(io.BytesIO(zip_res.content)) as z:
+            csv_filename = z.namelist()[0]
+            with z.open(csv_filename) as f:
+                df = pd.read_csv(f, sep='\t', header=None, on_bad_lines='skip', low_memory=False)
+    except Exception as e:
+        logging.error(f"GDELT decompression/parse failed: {e}")
+        return False
 
     events = []
     for _, row in df.iterrows():
@@ -38,14 +42,12 @@ def run():
             lat = float(row[53])
             lon = float(row[54])
         except (ValueError, TypeError):
-            continue # Skip events without coordinates
+            continue
             
         if pd.isna(lat) or pd.isna(lon):
             continue
             
         h3_id = get_h3_id(lat, lon, 6)
-        
-        # GDELT timestamps: YYYYMMDDHHMMSS
         date_str = str(row[1])
         if len(date_str) == 14:
             dt = datetime.strptime(date_str, "%Y%m%d%H%M%S").replace(tzinfo=timezone.utc)
@@ -72,6 +74,7 @@ def run():
             f.write(json.dumps(e) + "\n")
             
     logging.info(f"Appended {len(events)} geopolitical events.")
+    return True
 
 if __name__ == "__main__":
     run()
