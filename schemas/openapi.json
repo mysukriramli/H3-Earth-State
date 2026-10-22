@@ -1,0 +1,103 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "H3-Earth-State Autonomous Machine Endpoints",
+    "version": "1.0.0",
+    "description": "Static CDN-hosted spatial telemetry, cross-domain anomalies, and autonomous task queues for AI agents.",
+    "license": {
+      "name": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://raw.githubusercontent.com/mysukriramli/H3-Earth-State/main",
+      "description": "Canonical GitHub Raw CDN (Fastly Edge)"
+    }
+  ],
+  "paths": {
+    "/latest/world_state.json": {
+      "get": {
+        "summary": "Normalized Global H3 Hexagon Grid",
+        "description": "Returns an array of H3 Resolution-6 hexagons reporting physical or geopolitical activity within the rolling 24-48h window.",
+        "responses": {
+          "200": {
+            "description": "Active H3 grid state array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./v1/world_state.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/latest/anomalies.json": {
+      "get": {
+        "summary": "Statistical Cross-Domain Anomalies",
+        "description": "List of hexagons where physical disruptions (fires, quakes) or human events exceed 3-sigma statistical thresholds.",
+        "responses": {
+          "200": {
+            "description": "Active anomaly array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./v1/anomalies.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/latest/tasks.jsonl": {
+      "get": {
+        "summary": "Prioritized Autonomous Task Queue",
+        "description": "Line-delimited JSON stream of actionable objectives (P0 to P2) for tool-using agents.",
+        "responses": {
+          "200": {
+            "description": "Stream of task records",
+            "content": {
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "./v1/tasks.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/latest/evals.jsonl": {
+      "get": {
+        "summary": "Zero-Day Grounding Benchmark Evals",
+        "description": "Line-delimited JSON stream of multiple-choice tests synthesized from real-world events occurring today.",
+        "responses": {
+          "200": {
+            "description": "Stream of evaluation records",
+            "content": {
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "./v1/evals.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/manifests/provenance.json": {
+      "get": {
+        "summary": "Cryptographic Checksums & Provenance",
+        "description": "SHA-256 hashes and upstream source registries for all active artifacts.",
+        "responses": {
+          "200": {
+            "description": "Integrity manifest object"
+          }
+        }
+      }
+    }
+  }
+}
