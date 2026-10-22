@@ -1,35 +1,38 @@
 #!/usr/bin/env python3
 import os
 import json
+import io
 import logging
 from datetime import datetime, timezone
 import pandas as pd
 from .h3_utils import get_h3_id
+from circuit_breaker import resilient_get
 
 logging.basicConfig(level=logging.INFO)
 
-# Unauthenticated rolling 24h VIIRS active fire CSV from NASA
 URL = "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_Global_24h.csv"
 OUTPUT_FILE = "latest/events.jsonl"
 
-def run():
+def run() -> bool:
     logging.info("Ingesting NASA FIRMS Thermal Data...")
-    try:
-        df = pd.read_csv(URL)
-    except Exception as e:
-        logging.error(f"Failed to fetch FIRMS CSV: {e}")
-        return
+    res = resilient_get(URL, circuit_name="NASA_FIRMS", timeout=15.0)
+    if res is None:
+        logging.error("NASA FIRMS ingestion skipped due to circuit failure.")
+        return False
 
-    # Filter for high-confidence anomalies (nominal or high) to reduce noise
+    try:
+        df = pd.read_csv(io.StringIO(res.text))
+    except Exception as e:
+        logging.error(f"Failed to parse FIRMS CSV: {e}")
+        return False
+
     df = df[df['confidence'].isin(['n', 'h'])]
-    
     events = []
+
     for _, row in df.iterrows():
         lat, lon = row['latitude'], row['longitude']
         h3_id = get_h3_id(lat, lon, 6)
         
-        # Combine ACQ_DATE and ACQ_TIME into ISO UTC
-        # FIRMS time is "HHMM"
         time_str = f"{row['acq_date']} {str(row['acq_time']).zfill(4)}"
         dt = datetime.strptime(time_str, "%Y-%m-%d %H%M").replace(tzinfo=timezone.utc)
         
@@ -40,7 +43,7 @@ def run():
             "source": "NASA_FIRMS",
             "modality": "thermal_events",
             "attributes": {
-                "frp_mw": float(row['frp']), # Fire Radiative Power (MW)
+                "frp_mw": float(row['frp']),
                 "confidence": row['confidence']
             }
         }
@@ -52,6 +55,7 @@ def run():
             f.write(json.dumps(e) + "\n")
             
     logging.info(f"Appended {len(events)} thermal events.")
+    return True
 
 if __name__ == "__main__":
     run()
