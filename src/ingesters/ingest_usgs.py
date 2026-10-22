@@ -3,29 +3,34 @@ import os
 import json
 import logging
 from datetime import datetime, timezone
-import requests
 from .h3_utils import get_h3_id
+from circuit_breaker import resilient_get
 
 logging.basicConfig(level=logging.INFO)
 
 URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson"
 OUTPUT_FILE = "latest/events.jsonl"
 
-def run():
+def run() -> bool:
     logging.info("Ingesting USGS Seismic Data...")
-    res = requests.get(URL, timeout=15)
-    res.raise_for_status()
-    data = res.json()
+    res = resilient_get(URL, circuit_name="USGS_SEISMIC", timeout=12.0)
+    if res is None:
+        logging.error("USGS ingestion skipped due to circuit failure.")
+        return False
+
+    try:
+        data = res.json()
+    except Exception as e:
+        logging.error(f"Failed to parse USGS GeoJSON: {e}")
+        return False
 
     events = []
     for feature in data.get("features", []):
         props = feature["properties"]
         coords = feature["geometry"]["coordinates"]
         
-        # Coordinates in GeoJSON are [longitude, latitude, depth]
         lon, lat, depth = coords[0], coords[1], coords[2]
         h3_id = get_h3_id(lat, lon, 6)
-        
         event_time = datetime.fromtimestamp(props["time"] / 1000, tz=timezone.utc).isoformat()
         
         event = {
@@ -48,6 +53,7 @@ def run():
             f.write(json.dumps(e) + "\n")
             
     logging.info(f"Appended {len(events)} seismic events.")
+    return True
 
 if __name__ == "__main__":
     run()
