@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you utilize this continuous spatiotemporal dataset or zero-day evaluation benchmarks in your research, cite it using these metadata."
+title: "H3-Earth-State: The Autonomous Spatiotemporal World Graph"
+abstract: "A machine-readable digital twin of Earth combining real-time seismic, thermal, and geopolitical telemetry into Uber's H3 hexagonal spatial index with zero-day grounding benchmarks."
+authors:
+  - family-names: "Ramli"
+    given-names: "Sukri"
+    affiliation: "Independent Autonomous Systems Research"
+repository-code: "https://github.com/mysukriramli/H3-Earth-State"
+url: "https://mysukriramli.github.io/H3-Earth-State/"
+license: "CC-BY-4.0"
+version: "1.0.0"
+date-released: "2026-10-21"
+keywords:
+  - "spatiotemporal-graph"
+  - "autonomous-agents"
+  - "uber-h3"
+  - "zero-day-benchmarks"
+  - "model-context-protocol"
+  - "grounding-evaluation"
