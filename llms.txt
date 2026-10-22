@@ -1,0 +1,23 @@
+# H3-Earth-State: The Autonomous Spatiotemporal World Graph
+> Machine-readable digital twin of Earth fusing physical telemetry and geopolitical dynamics into Uber's H3 spatial index.
+> Maintained autonomously via GitHub Actions. Updated every 6 hours.
+
+## Live Operational Statistics
+- **Last Synchronized (UTC):** 2026-10-22T01:03:14.738450+00:00
+- **Active Anomalies (Today):** 15
+- **Pending Autonomous Tasks:** 15
+- **Historical Observations:** 117 rows across 59 hexagons
+- **Temporal Range:** 2026-10-20 to 2026-10-21
+
+## Canonical Endpoints (Zero-Auth, Fastly Edge CDN)
+- [Active Anomaly Feed (JSON)](latest/anomalies.json): High-confidence 3-sigma cross-domain disruptions.
+- [Prioritized Task Queue (JSONL)](latest/tasks.jsonl): Actionable objectives categorized P0 to P2.
+- [Zero-Day Evaluation Harness (JSONL)](latest/evals.jsonl): Uncontaminated benchmark questions derived from today's events.
+- [Resolved Physical Entities (JSONL)](latest/entities.jsonl): Wikipedia landmarks and infrastructure mapped to H3 hexagons.
+- [Latest Grid Snapshot (JSON)](latest/world_state.json): Normalized state of all active hexagons.
+- [Cryptographic Manifest (JSON)](manifests/provenance.json): SHA-256 integrity checksums and upstream source links.
+- [OpenAPI Specification (JSON)](schemas/openapi.json): Standard API interface description for agent tooling.
+
+## Machine Execution Guidelines
+- Read `AGENTS.md` for strict protocol boundaries, function calling schemas, and DuckDB range query recipes.
+- Do NOT parse raw coordinates with trigonometry; filter via exact string matching on `h3_res6_id`.
