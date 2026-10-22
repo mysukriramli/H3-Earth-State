@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 H3-Earth-State Master Orchestrator
-Executes the data flywheel with integrated schema contract gatekeeping:
+Executes the data flywheel with integrated historical compaction:
 1. Ingest -> 2. Normalize -> 3. Anomalies -> 4. Evals -> 5. Entities ->
-6. Tasks -> 7. Quality & Contract Validation -> 8. Cryptographic Manifest.
+6. Tasks -> 7. Quality Contracts -> 8. Monthly Compaction -> 9. Provenance Manifest.
 """
 
 import sys
@@ -26,6 +26,7 @@ import generate_evals
 import entity_resolution
 import generate_tasks
 import validate_contracts
+import compact_history
 import generate_manifest
 
 def run_ingestion():
@@ -93,8 +94,15 @@ def main():
         logging.error(f"CRITICAL CONTRACT BREACH: Pipeline aborted prior to staging: {e}")
         sys.exit(1)
 
-    # Phase 8: Compute SHA-256 Checksums and Emit Provenance Manifest
-    logging.info("--- PHASE 8: PROVENANCE MANIFEST ---")
+    # Phase 8: Long-Term Historical Compaction (Compacts past months)
+    logging.info("--- PHASE 8: HISTORICAL COMPACTION ---")
+    try:
+        compact_history.run()
+    except Exception as e:
+        logging.error(f"Compaction phase encountered an issue: {e}")
+
+    # Phase 9: Compute SHA-256 Checksums and Emit Provenance Manifest
+    logging.info("--- PHASE 9: PROVENANCE MANIFEST ---")
     try:
         generate_manifest.run()
     except Exception as e:
