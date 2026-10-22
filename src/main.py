@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """
 H3-Earth-State Master Orchestrator
-Executes the full 12-phase data flywheel:
-1. Ingest -> 2. Normalize -> 3. Anomalies -> 4. Evals -> 5. Entities ->
-6. Tasks -> 7. Contracts -> 8. Compaction -> 9. Discovery -> 
-10. Benchmark Harness -> 11. Dynamic Shields -> 12. Provenance Manifest.
+Executes the full 14-phase data flywheel with integrated circuit breakers,
+token scrubbing, quality validation, and historical state preservation.
 """
 
 import sys
@@ -13,7 +11,6 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-# Explicit multi-path resolution ensuring imports resolve across environments
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(current_dir)
 
@@ -33,34 +30,46 @@ import generate_discovery
 import benchmark_harness
 import generate_shields
 import generate_manifest
+import mirror_huggingface
+import circuit_breaker
 
-def run_ingestion():
-    logging.info("--- PHASE 1: INGESTION ---")
+def run_ingestion() -> dict:
+    logging.info("--- PHASE 1: INGESTION WITH CIRCUIT BREAKERS ---")
     ingesters = [
-        ("USGS Seismic", ingest_usgs),
-        ("NASA FIRMS Thermal", ingest_firms),
-        ("GDELT Geopolitical", ingest_gdelt)
+        ("USGS_SEISMIC", ingest_usgs),
+        ("NASA_FIRMS", ingest_firms),
+        ("GDELT_GEOPOLITICAL", ingest_gdelt)
     ]
     
+    statuses = {}
     for name, module in ingesters:
         try:
-            logging.info(f"Triggering {name}...")
-            module.run()
+            logging.info(f"Executing {name} ingester...")
+            success = module.run()
+            statuses[name] = bool(success)
         except Exception as e:
-            logging.error(f"Critical failure in {name} ingestion: {e}")
+            clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+            logging.error(f"Provider {name} encountered an unhandled exception: {clean_err}")
+            statuses[name] = False
+
+    return statuses
 
 def main():
     logging.info("Starting H3-Earth-State Pipeline Cycle...")
 
-    # Phase 1: Ingest raw telemetry into latest/events.jsonl
-    run_ingestion()
+    # Phase 1: Ingest raw telemetry with circuit breakers
+    provider_statuses = run_ingestion()
+
+    # Emit operational health status
+    circuit_breaker.write_health_status(provider_statuses)
 
     # Phase 2: DuckDB Normalization to Parquet and latest/world_state.json
     logging.info("--- PHASE 2: NORMALIZATION ---")
     try:
         normalize.run()
     except Exception as e:
-        logging.error(f"Normalization failed: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Normalization failed: {clean_err}")
         sys.exit(1)
 
     # Phase 3: Statistical Baseline and Cross-Domain Anomaly Detection
@@ -68,35 +77,40 @@ def main():
     try:
         anomalies.run()
     except Exception as e:
-        logging.error(f"Anomaly detection failed: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Anomaly detection failed: {clean_err}")
 
     # Phase 4: Zero-Day Multiple Choice Benchmark Generation
     logging.info("--- PHASE 4: AGENT EVAL GENERATION ---")
     try:
         generate_evals.run()
     except Exception as e:
-        logging.error(f"Eval generation failed: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Eval generation failed: {clean_err}")
 
     # Phase 5: Convert H3 IDs to Named Entities via Wikipedia GeoSearch
     logging.info("--- PHASE 5: ENTITY RESOLUTION ---")
     try:
         entity_resolution.run()
     except Exception as e:
-        logging.error(f"Entity resolution failed: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Entity resolution failed: {clean_err}")
 
     # Phase 6: Synthesize Prioritized Machine Task Directives
     logging.info("--- PHASE 6: AGENT TASK QUEUE GENERATION ---")
     try:
         generate_tasks.run()
     except Exception as e:
-        logging.error(f"Task generation failed: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Task generation failed: {clean_err}")
 
     # Phase 7: Automated Quality Validation & Schema Contract Testing
     logging.info("--- PHASE 7: AUTOMATED QA & CONTRACT TESTING ---")
     try:
         validate_contracts.run()
     except Exception as e:
-        logging.error(f"CRITICAL CONTRACT BREACH: Pipeline aborted prior to staging: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"CRITICAL CONTRACT BREACH: Pipeline aborted prior to staging: {clean_err}")
         sys.exit(1)
 
     # Phase 8: Long-Term Historical Compaction (Compacts completed months)
@@ -104,35 +118,48 @@ def main():
     try:
         compact_history.run()
     except Exception as e:
-        logging.error(f"Compaction encountered an issue: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Compaction encountered an issue: {clean_err}")
 
     # Phase 9: Dynamic Discovery Manifest Compilation (llms.txt / llms-full.txt)
     logging.info("--- PHASE 9: DISCOVERY MANIFEST GENERATION ---")
     try:
         generate_discovery.run()
     except Exception as e:
-        logging.error(f"Discovery manifest generation failed: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Discovery manifest generation failed: {clean_err}")
 
     # Phase 10: Automated Grounding Benchmark Harness
     logging.info("--- PHASE 10: BENCHMARK HARNESS EXECUTION ---")
     try:
         benchmark_harness.run()
     except Exception as e:
-        logging.error(f"Benchmark harness execution skipped/failed: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Benchmark harness execution skipped/failed: {clean_err}")
 
     # Phase 11: Dynamic Badge & Shield Generation
     logging.info("--- PHASE 11: DYNAMIC SHIELD GENERATION ---")
     try:
         generate_shields.run()
     except Exception as e:
-        logging.error(f"Shield generation failed: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Shield generation failed: {clean_err}")
 
     # Phase 12: Compute SHA-256 Checksums and Emit Provenance Manifest
     logging.info("--- PHASE 12: PROVENANCE MANIFEST ---")
     try:
         generate_manifest.run()
     except Exception as e:
-        logging.error(f"Manifest generation failed: {e}")
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Manifest generation failed: {clean_err}")
+
+    # Phase 13: High-Scale Dataset Mirroring (Hugging Face)
+    logging.info("--- PHASE 13: HUGGING FACE MIRROR SYNC ---")
+    try:
+        mirror_huggingface.run()
+    except Exception as e:
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Hugging Face mirror sync encountered an issue: {clean_err}")
 
     logging.info("H3-Earth-State Flywheel Cycle Completed Successfully.")
 
