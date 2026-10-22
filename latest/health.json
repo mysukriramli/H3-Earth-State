@@ -1,0 +1,15 @@
+{
+  "status": "HEALTHY",
+  "timestamp_utc": "2026-10-22T01:13:35Z",
+  "upstream_providers": {
+    "USGS_SEISMIC": true,
+    "NASA_FIRMS": true,
+    "GDELT_GEOPOLITICAL": true
+  },
+  "circuit_states": {
+    "USGS_SEISMIC": "CLOSED",
+    "NASA_FIRMS": "CLOSED",
+    "GDELT_GEOPOLITICAL": "CLOSED",
+    "GDELT_EXPORT": "CLOSED"
+  }
+}

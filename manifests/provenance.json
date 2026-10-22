@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-10-22T01:03:14.764101+00:00",
+    "generated_at": "2026-10-22T01:13:41.070353+00:00",
     "schema_version": "1.1.0",
     "license": "CC-BY-4.0",
     "repository": "H3-Earth-State",
@@ -14,28 +14,36 @@
   },
   "artifacts": {
     "latest/world_state.json": {
-      "sha256": "58d81bff64830a53dce9e79ff05ac00516584e7ce54ecaec3967b1acadaea617",
+      "sha256": "a878546d2b15d07089a8aaac7f8a6095bb8d64461256e52cf91f5cc2522c73b1",
       "size_bytes": 10152
     },
     "latest/anomalies.json": {
-      "sha256": "72d1263553bf0151a7ed104530ad8498dcf00618a98f5354e95295d48a218fd5",
+      "sha256": "e51eb1b97db5c2dc99fb6689ce02face64494419224b6c3849bba1c8ee164c43",
       "size_bytes": 3213
     },
     "latest/evals.jsonl": {
-      "sha256": "7bbbaeb557a9844e6dac138dc414bdc84c75c6cc65c0ee707886a0d12f04d028",
+      "sha256": "d593429daff73cec0a03a6de1ed7384aaee956243709539d1f9dd4f917dd0980",
       "size_bytes": 7035
     },
     "latest/entities.jsonl": {
-      "sha256": "27bd9cfef623cbcf028a3333a03032c8d3df8f5682a0ed62306671926e56eeed",
+      "sha256": "0ef3a69309a90b3bc4c62aab9c29deee0e57ba595c1b407d75a344149aac2db6",
       "size_bytes": 4359
     },
     "latest/tasks.jsonl": {
-      "sha256": "e7ce9f68a3bc214b7d10256db72020160dc8741b54892723e4c6813aa9601a02",
+      "sha256": "7ce1d543d465d898f36da8956266f53371852d5e6f8c7f0268127fa731817805",
       "size_bytes": 8880
     },
+    "latest/embeddings.parquet": {
+      "sha256": "a0a67bb4686fad740f8c691deb94f4ce7f10b6693bdab11b3fb41f4ab305aee8",
+      "size_bytes": 1564
+    },
+    "latest/health.json": {
+      "sha256": "28963931d5279712fe8e9c17150b0336ff8ab88753a071a51a449cc94659368f",
+      "size_bytes": 330
+    },
     "snapshots/year=2026/month=10/2026-10-22.parquet": {
-      "sha256": "723a6d740fda333ef0e6e347f0ad983ee7fb18f77bc8bb6a5aabe3e8d5c789d2",
-      "size_bytes": 2119
+      "sha256": "e9505987358eca9ebf7ebe80597500d352377598a67586cdfc4f96f0d289a653",
+      "size_bytes": 2108
     }
   }
 }
