@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "h3-earth-state": {
+      "command": "python",
+      "args": ["src/mcp_server.py", "--transport", "stdio"]
+    }
+  }
+}
