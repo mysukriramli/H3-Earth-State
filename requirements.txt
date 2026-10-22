@@ -3,3 +3,4 @@ pandas>=2.0.0
 h3>=4.0.0
 duckdb>=0.10.0
 jsonschema>=4.20.0
+mcp<2
