@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H3-Earth-State | Autonomous World Graph</title>
+  
+  <!-- MapLibre GL CSS & JS (Free, Open-Source Mapbox Alternative) -->
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  
+  <!-- Uber H3 JS v4 (Client-side Hexagon Math) -->
+  <script src="https://unpkg.com/h3-js@4.1.0/dist/h3-js.umd.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #0a0c10;
+      --card-bg: rgba(18, 22, 31, 0.88);
+      --border-color: #262c3a;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent-red: #ef4444;
+      --accent-yellow: #f59e0b;
+      --accent-blue: #3b82f6;
+      --accent-green: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+    }
+
+    #map {
+      flex: 1;
+      height: 100%;
+      background: #050505;
+    }
+
+    #sidebar {
+      width: 440px;
+      height: 100%;
+      background: var(--card-bg);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    .header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .header h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-green);
+    }
+
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .metric-card {
+      text-align: center;
+    }
+    .metric-card .num {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .metric-card .lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+    }
+    .section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .task-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s;
+    }
+    .task-card:hover {
+      border-color: #475569;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .badge-p0 { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+    .badge-p1 { background: rgba(245, 158, 11, 0.2); color: var(--accent-yellow); border: 1px solid var(--accent-yellow); }
+    .badge-p2 { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); border: 1px solid var(--accent-blue); }
+
+    .task-title {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+    .task-meta {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .maplibre-popup-content {
+      background: var(--card-bg) !important;
+      color: var(--text-main) !important;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 14px !important;
+      font-family: monospace;
+      font-size: 0.75rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+    }
+    .maplibre-popup-anchor-bottom .maplibre-popup-tip {
+      border-top-color: var(--border-color) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <div id="sidebar">
+    <div class="header">
+      <h1><span class="pulse-dot"></span> H3-Earth-State Live</h1>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Autonomous Spatiotemporal Digital Twin</p>
+    </div>
+
+    <div class="metrics-bar">
+      <div class="metric-card">
+        <div class="num" id="stat-anomalies">-</div>
+        <div class="lbl">Anomalies</div>
+      </div>
+      <div class="metric-card">
+        <div class="num" id="stat-tasks">-</div>
+        <div class="lbl">Active Tasks</div>
+      </div>
+      <div class="metric-card">
+        <div class="num" id="stat-grid">-</div>
+        <div class="lbl">Active Cells</div>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="section-title">Prioritized Agent Task Queue</div>
+      <div id="task-list">Loading machine directives...</div>
+    </div>
+  </div>
+
+  <script>
+    const REPO = "mysukriramli/H3-Earth-State";
+    const BRANCH = "main";
+    
+    // Determine data path (relative if on GitHub Pages, fallback to Raw CDN)
+    const isPages = window.location.hostname.includes("github.io");
+    const BASE_URL = isPages ? ".." : `https://raw.githubusercontent.com/${REPO}/${BRANCH}`;
+
+    // Initialize MapLibre GL Map (Carto Dark Matter vector tiles)
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+      center: [15, 20],
+      zoom: 1.8,
+      projection: 'globe'
+    });
+
+    map.addControl(new maplibregl.NavigationControl(), 'top-left');
+
+    async function loadJson(path) {
+      try {
+        const res = await fetch(`${BASE_URL}/${path}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+      } catch (e) {
+        console.warn(`Failed loading ${path}:`, e);
+        return null;
+      }
+    }
+
+    async function loadJsonl(path) {
+      try {
+        const res = await fetch(`${BASE_URL}/${path}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+        return text.split('\n')
+          .filter(l => l.trim().length > 0)
+          .map(l => JSON.parse(l));
+      } catch (e) {
+        console.warn(`Failed loading ${path}:`, e);
+        return [];
+      }
+    }
+
+    // Convert an H3 index to a GeoJSON Feature
+    function h3ToFeature(h3Id, properties) {
+      try {
+        // h3.cellToBoundary returns coordinates [lat, lng]. GeoJSON expects [lng, lat].
+        const coords = h3.cellToBoundary(h3Id, true);
+        return {
+          type: "Feature",
+          properties: properties,
+          geometry: {
+            type: "Polygon",
+            coordinates: [coords]
+          }
+        };
+      } catch (e) {
+        return null;
+      }
+    }
+
+    map.on('load', async () => {
+      // 1. Fetch live telemetry
+      const anomalies = await loadJson('latest/anomalies.json') || [];
+      const tasks = await loadJsonl('latest/tasks.jsonl');
+      const worldState = await loadJson('latest/world_state.json') || [];
+
+      // Update counters
+      document.getElementById('stat-anomalies').innerText = anomalies.length;
+      document.getElementById('stat-tasks').innerText = tasks.length;
+      document.getElementById('stat-grid').innerText = worldState.length;
+
+      // 2. Render Sidebar Tasks
+      const taskContainer = document.getElementById('task-list');
+      if (tasks.length === 0) {
+        taskContainer.innerHTML = '<p style="color: var(--text-muted); font-size: 0.75rem;">No active agent tasks detected.</p>';
+      } else {
+        taskContainer.innerHTML = tasks.slice(0, 15).map(t => {
+          const badgeClass = t.priority === 'P0_CRITICAL' ? 'badge-p0' : (t.priority === 'P1_HIGH' ? 'badge-p1' : 'badge-p2');
+          return `
+            <div class="task-card" onclick="focusH3('${t.target_h3}')" style="cursor: pointer;">
+              <span class="badge ${badgeClass}">${t.priority}</span>
+              <div class="task-title">${t.actionable_objective}</div>
+              <div class="task-meta">
+                <span>Cell: ${t.target_h3}</span>
+                <span>${t.anomaly_type}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 3. Build GeoJSON Hexagon Layers on the Fly
+      const features = [];
+      anomalies.forEach(a => {
+        let color = '#3b82f6'; // Geopolitical (Blue)
+        if (a.max_seismic_magnitude > 0) color = '#f59e0b'; // Seismic (Yellow)
+        if (a.max_thermal_intensity_mw > 0) color = '#ef4444'; // Fire (Red)
+
+        const feat = h3ToFeature(a.h3_res6_id, {
+          ...a,
+          fillColor: color
+        });
+        if (feat) features.push(feat);
+      });
+
+      const geojsonData = {
+        type: "FeatureCollection",
+        features: features
+      };
+
+      // 4. Add Source & Layers to MapLibre
+      map.addSource('h3-anomalies', {
+        type: 'geojson',
+        data: geojsonData
+      });
+
+      map.addLayer({
+        id: 'h3-hex-fill',
+        type: 'fill',
+        source: 'h3-anomalies',
+        paint: {
+          'fill-color': ['get', 'fillColor'],
+          'fill-opacity': 0.6
+        }
+      });
+
+      map.addLayer({
+        id: 'h3-hex-outline',
+        type: 'line',
+        source: 'h3-anomalies',
+        paint: {
+          'line-color': '#ffffff',
+          'line-width': 1.5,
+          'line-opacity': 0.8
+        }
+      });
+
+      // 5. Click Popups for Hexagons
+      map.on('click', 'h3-hex-fill', (e) => {
+        const props = e.features[0].properties;
+        new maplibregl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(`
+            <strong>Cell:</strong> ${props.h3_res6_id}<br/>
+            <strong>Type:</strong> ${props.anomaly_type}<br/>
+            <strong>Date:</strong> ${props.anomaly_date}<br/>
+            <strong>Magnitude:</strong> ${props.max_seismic_magnitude}<br/>
+            <strong>Thermal:</strong> ${props.max_thermal_intensity_mw} MW<br/>
+            <strong>Human Events:</strong> ${props.human_event_count}
+          `)
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'h3-hex-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
+      map.on('mouseleave', 'h3-hex-fill', () => { map.getCanvas().style.cursor = ''; });
+    });
+
+    // Sidebar interaction: Zoom to clicked task's hexagon
+    window.focusH3 = function(h3Id) {
+      try {
+        const [lat, lng] = h3.cellToLatLng(h3Id);
+        map.flyTo({ center: [lng, lat], zoom: 7, speed: 1.5 });
+      } catch (e) {
+        console.error("Invalid H3 to focus:", e);
+      }
+    };
+  </script>
+</body>
+</html>
