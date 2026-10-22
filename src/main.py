@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 H3-Earth-State Master Orchestrator
-Executes the full 11-phase data flywheel:
+Executes the full 12-phase data flywheel:
 1. Ingest -> 2. Normalize -> 3. Anomalies -> 4. Evals -> 5. Entities ->
-6. Tasks -> 7. Contracts -> 8. Compaction -> 9. Discovery -> 10. Benchmark Harness -> 11. Provenance.
+6. Tasks -> 7. Contracts -> 8. Compaction -> 9. Discovery -> 
+10. Benchmark Harness -> 11. Dynamic Shields -> 12. Provenance Manifest.
 """
 
 import sys
@@ -12,6 +13,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
+# Explicit multi-path resolution ensuring imports resolve across environments
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(current_dir)
 
@@ -29,6 +31,7 @@ import validate_contracts
 import compact_history
 import generate_discovery
 import benchmark_harness
+import generate_shields
 import generate_manifest
 
 def run_ingestion():
@@ -117,8 +120,15 @@ def main():
     except Exception as e:
         logging.error(f"Benchmark harness execution skipped/failed: {e}")
 
-    # Phase 11: Compute SHA-256 Checksums and Emit Provenance Manifest
-    logging.info("--- PHASE 11: PROVENANCE MANIFEST ---")
+    # Phase 11: Dynamic Badge & Shield Generation
+    logging.info("--- PHASE 11: DYNAMIC SHIELD GENERATION ---")
+    try:
+        generate_shields.run()
+    except Exception as e:
+        logging.error(f"Shield generation failed: {e}")
+
+    # Phase 12: Compute SHA-256 Checksums and Emit Provenance Manifest
+    logging.info("--- PHASE 12: PROVENANCE MANIFEST ---")
     try:
         generate_manifest.run()
     except Exception as e:
