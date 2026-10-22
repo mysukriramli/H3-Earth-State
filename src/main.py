@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """
 H3-Earth-State Master Orchestrator
-Executes the full 14-phase data flywheel with integrated circuit breakers,
-token scrubbing, quality validation, and historical state preservation.
+Executes the complete 14-phase planetary machine flywheel:
+1. Ingest -> 2. Normalize -> 3. Anomalies -> 4. Evals -> 5. Entities ->
+6. Tasks -> 7. Contracts -> 8. Compaction -> 9. Discovery -> 
+10. Benchmark Harness -> 11. Dynamic Shields -> 12. Dense Vector Embeddings ->
+13. Provenance Manifest -> 14. Hugging Face Mirror.
 """
 
 import sys
@@ -29,6 +32,7 @@ import compact_history
 import generate_discovery
 import benchmark_harness
 import generate_shields
+import generate_embeddings
 import generate_manifest
 import mirror_huggingface
 import circuit_breaker
@@ -55,7 +59,7 @@ def run_ingestion() -> dict:
     return statuses
 
 def main():
-    logging.info("Starting H3-Earth-State Pipeline Cycle...")
+    logging.info("Starting H3-Earth-State Complete Flywheel Cycle...")
 
     # Phase 1: Ingest raw telemetry with circuit breakers
     provider_statuses = run_ingestion()
@@ -145,23 +149,31 @@ def main():
         clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
         logging.error(f"Shield generation failed: {clean_err}")
 
-    # Phase 12: Compute SHA-256 Checksums and Emit Provenance Manifest
-    logging.info("--- PHASE 12: PROVENANCE MANIFEST ---")
+    # Phase 12: Multimodal Dense Vector Embeddings Generation
+    logging.info("--- PHASE 12: MULTIMODAL EMBEDDINGS PROJECTION ---")
+    try:
+        generate_embeddings.run()
+    except Exception as e:
+        clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
+        logging.error(f"Embeddings projection failed: {clean_err}")
+
+    # Phase 13: Compute SHA-256 Checksums and Emit Provenance Manifest
+    logging.info("--- PHASE 13: PROVENANCE MANIFEST ---")
     try:
         generate_manifest.run()
     except Exception as e:
         clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
         logging.error(f"Manifest generation failed: {clean_err}")
 
-    # Phase 13: High-Scale Dataset Mirroring (Hugging Face)
-    logging.info("--- PHASE 13: HUGGING FACE MIRROR SYNC ---")
+    # Phase 14: High-Scale Dataset Mirroring (Hugging Face)
+    logging.info("--- PHASE 14: HUGGING FACE MIRROR SYNC ---")
     try:
         mirror_huggingface.run()
     except Exception as e:
         clean_err = circuit_breaker.scrub_sensitive_tokens(str(e))
         logging.error(f"Hugging Face mirror sync encountered an issue: {clean_err}")
 
-    logging.info("H3-Earth-State Flywheel Cycle Completed Successfully.")
+    logging.info("H3-Earth-State Planetary Flywheel Execution Successful.")
 
 if __name__ == "__main__":
     main()
