@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /latest/
+Allow: /snapshots/
+Allow: /manifests/
+Allow: /schemas/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /AGENTS.md
+
+Sitemap: https://mysukriramli.github.io/H3-Earth-State/sitemap.xml
