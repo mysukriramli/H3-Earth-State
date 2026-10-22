@@ -40,7 +40,7 @@ jobs:
           git config user.email "earth-state-bot@users.noreply.github.com"
           
           # Stage the rolling latest data, permanent snapshots, and provenance manifests
-          git add -A latest/ snapshots/ manifests/ schemas/ llms.txt llms-full.txt AGENTS.md
+          git add -A latest/ snapshots/ manifests/ schemas/ evals/ llms.txt llms-full.txt AGENTS.md AGENTS.md
           
           if git diff --staged --quiet; then
             echo "No new world events detected in this cycle. Skipping commit."
