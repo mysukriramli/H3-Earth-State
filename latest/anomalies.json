@@ -1,3 +1,4 @@
 [
-	{"h3_res6_id":"861e98657ffffff","anomaly_date":"2026-10-23","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.7,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"}
+	{"h3_res6_id":"861e98657ffffff","anomaly_date":"2026-10-23","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.7,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"},
+	{"h3_res6_id":"861e9864fffffff","anomaly_date":"2026-10-23","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.2,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"}
 ]
