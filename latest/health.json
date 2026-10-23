@@ -1,6 +1,6 @@
 {
   "status": "HEALTHY",
-  "timestamp_utc": "2026-10-23T16:19:11Z",
+  "timestamp_utc": "2026-10-23T20:54:21Z",
   "upstream_providers": {
     "USGS_SEISMIC": true,
     "NASA_FIRMS": true,
