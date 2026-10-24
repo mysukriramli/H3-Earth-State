@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-10-24T10:09:15.193000+00:00",
+    "generated_at": "2026-10-24T15:16:25.488288+00:00",
     "schema_version": "1.1.0",
     "license": "CC-BY-4.0",
     "repository": "H3-Earth-State",
@@ -14,36 +14,36 @@
   },
   "artifacts": {
     "latest/world_state.json": {
-      "sha256": "390e02fa1779a9df28c1fc1d98223f423276db25225b4acd09019b5c2265db26",
-      "size_bytes": 32302
+      "sha256": "978e92d65f84bd72d03f367423d05c53ddd8cbf3546da10d0161966cc9cce858",
+      "size_bytes": 33824
     },
     "latest/anomalies.json": {
-      "sha256": "2c8b0a4839281ed8da40add3c7aa9b5c1c422bd474dbf35e933653b5d2afe39c",
+      "sha256": "6cc9baaa2b6f3df51abefb36c97a2717a04d9ed4360691f1e4211ceaf75ed86d",
       "size_bytes": 3855
     },
     "latest/evals.jsonl": {
-      "sha256": "2c314cdb2d88d923d7ffabb5ac10e76fe957912432696ab7522d9a10056fe030",
+      "sha256": "970b523c133c8dd0c50eae66bd2515c45039673ae888ad1b4e16de977dbaff25",
       "size_bytes": 8442
     },
     "latest/entities.jsonl": {
-      "sha256": "3745d35718dc504d561a94b51873de31f15f60c15ee6b3d0d4244d8d9f739f5f",
+      "sha256": "7e0bdb603ae0455147ac67b37ba60db7c03e53714df262e7fe2ee4a75abd163c",
       "size_bytes": 5245
     },
     "latest/tasks.jsonl": {
-      "sha256": "e59badeec5c372e0aa5f7e2c75eab7d2557e41e6fb9959745ccac1a7fd70cf27",
+      "sha256": "94b89946f1559489caefb2aa5394dd7a0f3e4e3b22d4ea9f213b7922d864d589",
       "size_bytes": 10838
     },
     "latest/embeddings.parquet": {
-      "sha256": "6e23415a9de061121185686ec350dc579a88fbf9a2da91d6d01f56068d0f6cd8",
-      "size_bytes": 2731
+      "sha256": "bb35efca80624c069b55d1ef748a75bcd4b4586a83af4216910b7d7842b8e82c",
+      "size_bytes": 2826
     },
     "latest/health.json": {
-      "sha256": "5ff35c0d6f79c075df8c01583ec492b9af81973e17ae5eaae2d026eec8040ff0",
-      "size_bytes": 330
+      "sha256": "09cb732e202e3bcc964892fb9199853490a15fbb4270fa4b24713bf47f5dd67a",
+      "size_bytes": 332
     },
     "snapshots/year=2026/month=10/2026-10-24.parquet": {
-      "sha256": "b91a2364f273d11a3783a1915ccdbe44cdb809d9eeca1137520909f5a0b45131",
-      "size_bytes": 3537
+      "sha256": "b442a333e46378f6617510949561e542b64f4170470a2b5e1829068c2c53d363",
+      "size_bytes": 3649
     }
   }
 }
