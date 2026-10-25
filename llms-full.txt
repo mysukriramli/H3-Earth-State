@@ -1,8 +1,15 @@
 # H3-Earth-State Full Situational Briefing
-Generated UTC: 2026-10-25T10:34:31.278226+00:00
-Active Anomaly Pool: 7 | Active Task Pool: 7
+Generated UTC: 2026-10-25T15:26:24.405306+00:00
+Active Anomaly Pool: 10 | Active Task Pool: 10
 
 ## Current High-Priority Autonomous Directives
+### [P0_CRITICAL] task_869e11837ffffff_20261025
+- **Target Hexagon:** `869e11837ffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Remote
+- **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [unpopulated/remote region] (Hexagon: 869e11837ffffff). Magnitude 6.2 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
+- **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
+
 ### [P0_CRITICAL] task_864a6eb27ffffff_20261025
 - **Target Hexagon:** `864a6eb27ffffff`
 - **Anomaly Type:** Major Seismic Event
@@ -17,6 +24,13 @@ Active Anomaly Pool: 7 | Active Task Pool: 7
 - **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [Selepet Rural LLG, Komba Rural LLG] (Hexagon: 869c9dcf7ffffff). Magnitude 5.2 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
 - **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
 
+### [P0_CRITICAL] task_8672dc497ffffff_20261025
+- **Target Hexagon:** `8672dc497ffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Mari language (Sepik), Chambri Lakes
+- **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [Mari language (Sepik), Chambri Lakes] (Hexagon: 8672dc497ffffff). Magnitude 5.4 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
+- **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
+
 ### [P0_CRITICAL] task_869e1198fffffff_20261025
 - **Target Hexagon:** `869e1198fffffff`
 - **Anomaly Type:** Major Seismic Event
@@ -24,12 +38,26 @@ Active Anomaly Pool: 7 | Active Task Pool: 7
 - **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [unpopulated/remote region] (Hexagon: 869e1198fffffff). Magnitude 6.1 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
 - **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
 
-### [P0_CRITICAL] task_869e11837ffffff_20261025
-- **Target Hexagon:** `869e11837ffffff`
+### [P2_ELEVATED] task_863c6300fffffff_20261025
+- **Target Hexagon:** `863c6300fffffff`
 - **Anomaly Type:** Major Seismic Event
 - **Affected Infrastructure:** Remote
-- **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [unpopulated/remote region] (Hexagon: 869e11837ffffff). Magnitude 6.2 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
-- **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 863c6300fffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
+
+### [P2_ELEVATED] task_869e1e2c7ffffff_20261025
+- **Target Hexagon:** `869e1e2c7ffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Remote
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 869e1e2c7ffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
+
+### [P2_ELEVATED] task_863c630a7ffffff_20261025
+- **Target Hexagon:** `863c630a7ffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Remote
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 863c630a7ffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
 
 ### [P2_ELEVATED] task_869e18d37ffffff_20261025
 - **Target Hexagon:** `869e18d37ffffff`
@@ -45,19 +73,15 @@ Active Anomaly Pool: 7 | Active Task Pool: 7
 - **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 869e1c69fffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
 - **Required Capabilities:** `telemetry_verification, sensor_recalibration`
 
-### [P2_ELEVATED] task_869e1e2c7ffffff_20261025
-- **Target Hexagon:** `869e1e2c7ffffff`
-- **Anomaly Type:** Major Seismic Event
-- **Affected Infrastructure:** Remote
-- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 869e1e2c7ffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
-- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
-
 ## Active Physical & Political Disruptions
 
-- `864a6eb27ffffff` | **Major Seismic Event** | Quake: M6.5 | Thermal: 0.0 MW | Human Events: 0
-- `869c9dcf7ffffff` | **Major Seismic Event** | Quake: M5.2 | Thermal: 0.0 MW | Human Events: 0
-- `869e1198fffffff` | **Major Seismic Event** | Quake: M6.1 | Thermal: 0.0 MW | Human Events: 0
 - `869e11837ffffff` | **Major Seismic Event** | Quake: M6.2 | Thermal: 0.0 MW | Human Events: 0
+- `863c6300fffffff` | **Major Seismic Event** | Quake: M5.9 | Thermal: 0.0 MW | Human Events: 0
+- `869e1e2c7ffffff` | **Major Seismic Event** | Quake: M5.4 | Thermal: 0.0 MW | Human Events: 0
+- `863c630a7ffffff` | **Major Seismic Event** | Quake: M5.1 | Thermal: 0.0 MW | Human Events: 0
 - `869e18d37ffffff` | **Major Seismic Event** | Quake: M5.1 | Thermal: 0.0 MW | Human Events: 0
 - `869e1c69fffffff` | **Major Seismic Event** | Quake: M5.1 | Thermal: 0.0 MW | Human Events: 0
-- `869e1e2c7ffffff` | **Major Seismic Event** | Quake: M5.4 | Thermal: 0.0 MW | Human Events: 0
+- `864a6eb27ffffff` | **Major Seismic Event** | Quake: M6.5 | Thermal: 0.0 MW | Human Events: 0
+- `869c9dcf7ffffff` | **Major Seismic Event** | Quake: M5.2 | Thermal: 0.0 MW | Human Events: 0
+- `8672dc497ffffff` | **Major Seismic Event** | Quake: M5.4 | Thermal: 0.0 MW | Human Events: 0
+- `869e1198fffffff` | **Major Seismic Event** | Quake: M6.1 | Thermal: 0.0 MW | Human Events: 0
