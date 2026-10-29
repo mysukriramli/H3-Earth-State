@@ -2,13 +2,13 @@
   "records_badge": {
     "schemaVersion": 1,
     "label": "spatial records",
-    "message": "2,200",
+    "message": "2,212",
     "color": "blue"
   },
   "tasks_badge": {
     "schemaVersion": 1,
     "label": "active P0 tasks",
-    "message": "1",
+    "message": "2",
     "color": "red"
   },
   "lift_badge": {
