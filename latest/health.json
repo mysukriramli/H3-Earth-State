@@ -1,6 +1,6 @@
 {
   "status": "DEGRADED",
-  "timestamp_utc": "2026-10-30T17:56:50Z",
+  "timestamp_utc": "2026-10-30T21:57:06Z",
   "upstream_providers": {
     "USGS_SEISMIC": true,
     "NASA_FIRMS": true,
