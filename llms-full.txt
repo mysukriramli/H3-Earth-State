@@ -1,7 +1,23 @@
 # H3-Earth-State Full Situational Briefing
-Generated UTC: 2026-10-31T11:35:38.863009+00:00
-Active Anomaly Pool: 0 | Active Task Pool: 0
+Generated UTC: 2026-10-31T16:42:15.945493+00:00
+Active Anomaly Pool: 2 | Active Task Pool: 2
 
 ## Current High-Priority Autonomous Directives
+### [P0_CRITICAL] task_8666a3a67ffffff_20261031
+- **Target Hexagon:** `8666a3a67ffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Bajo Corral, El Cañafístulo, Vallerriquito, San Miguel, Los Santos, San José, Los Santos
+- **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [Bajo Corral, El Cañafístulo, Vallerriquito] (Hexagon: 8666a3a67ffffff). Magnitude 5.2 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
+- **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
+
+### [P2_ELEVATED] task_869e1e21fffffff_20261031
+- **Target Hexagon:** `869e1e21fffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Remote
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 869e1e21fffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
+
 ## Active Physical & Political Disruptions
 
+- `869e1e21fffffff` | **Major Seismic Event** | Quake: M5.0 | Thermal: 0.0 MW | Human Events: 0
+- `8666a3a67ffffff` | **Major Seismic Event** | Quake: M5.2 | Thermal: 0.0 MW | Human Events: 0
