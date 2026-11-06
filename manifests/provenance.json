@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-11-06T13:38:52.473048+00:00",
+    "generated_at": "2026-11-06T22:38:46.526331+00:00",
     "schema_version": "1.1.0",
     "license": "CC-BY-4.0",
     "repository": "H3-Earth-State",
@@ -14,36 +14,36 @@
   },
   "artifacts": {
     "latest/world_state.json": {
-      "sha256": "1b887dc3bf28094a941b5132a58be4d5bf774b738676a81a99ab48afd189ba17",
-      "size_bytes": 125243
+      "sha256": "67ab71fd9d0f2307aa775ac9e2ee3f14f761a99db5f6ed1d4d5ad24a252c674f",
+      "size_bytes": 127272
     },
     "latest/anomalies.json": {
       "sha256": "0eeddb3f83076b74c3c9f912308453338b059b74efe5c43f4844ad68bcf21871",
       "size_bytes": 217
     },
     "latest/evals.jsonl": {
-      "sha256": "9a2a63f92317205b8f0f5d4d2d9ed498f0fd0a3ce920737d8bf278efd39bf8d4",
+      "sha256": "5fa2acf1fb4d82905efdf3db1cc55163a1ed2beda3d394840e6e9addbd2d5545",
       "size_bytes": 469
     },
     "latest/entities.jsonl": {
-      "sha256": "6d2e04041de3efc85627bd15054b292746a669a83bf1952ddf2ce4078134ce56",
+      "sha256": "eb4b6f40e29b506f732aa28d5caf4016e0e225ef7f5951e0f34a76f63e543c2e",
       "size_bytes": 290
     },
     "latest/tasks.jsonl": {
-      "sha256": "de9ff86eb18d0d8079a22cb3252f176bc013f08a8296f7cff24366245671092c",
+      "sha256": "485fe2aa9b6fb11e4521e3bca691c355cc90b6646ffc9145407a9a5e5647ebe8",
       "size_bytes": 683
     },
     "latest/embeddings.parquet": {
-      "sha256": "beaae7a929c27e9fa11dd4263bfcee8fc3adaf88f9184aea88413ad435c37d27",
-      "size_bytes": 7426
+      "sha256": "a6b9e44cca9c855a8053774a87ebf2879c1a12e383e559156130ed744f4f7588",
+      "size_bytes": 7568
     },
     "latest/health.json": {
-      "sha256": "7b2cef8da04a7b3352944e38341f2c1dc4a30c248201c67910f6831501ac3376",
-      "size_bytes": 332
+      "sha256": "ecfa8664e613d200c650f794d11624e8dc84162487d1b7cb0568cb2451dd1ded",
+      "size_bytes": 330
     },
     "snapshots/year=2026/month=11/2026-11-06.parquet": {
-      "sha256": "e3bd17b36404a14277d05aa376cf1907681a0289b070bbbb7de3deff6e6379b1",
-      "size_bytes": 8619
+      "sha256": "f6d032064074959a3f199ee1a778dd7708233865e1d10e76120ea7aba2b5b506",
+      "size_bytes": 8720
     }
   }
 }
