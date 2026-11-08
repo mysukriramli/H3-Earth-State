@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-11-08T12:38:41.121361+00:00",
+    "generated_at": "2026-11-08T21:36:27.536945+00:00",
     "schema_version": "1.1.0",
     "license": "CC-BY-4.0",
     "repository": "H3-Earth-State",
@@ -14,8 +14,8 @@
   },
   "artifacts": {
     "latest/world_state.json": {
-      "sha256": "7cd64e72e5e2f4e96627251d7343159454c1de96456d68be1947ae86d7c8c7e7",
-      "size_bytes": 138604
+      "sha256": "a76693a6aa24e210a1486b4aa5f4b3862f9dafa6b7e39c50663328af1319efb5",
+      "size_bytes": 140977
     },
     "latest/anomalies.json": {
       "sha256": "b45c681534d92e14f44e6f5577b0701bd30dc73726b1f68a68cb4bbeca87093c",
@@ -38,12 +38,12 @@
       "size_bytes": 7817
     },
     "latest/health.json": {
-      "sha256": "88b5b995e22b44f21c78ff04d6ed2046e432a75843ec9d0f3c5923360bd9083d",
-      "size_bytes": 330
+      "sha256": "cc93143da4a4935a288f063f8ce7601eda6605aa76405708b41e5cbcd6b71083",
+      "size_bytes": 332
     },
     "snapshots/year=2026/month=11/2026-11-08.parquet": {
-      "sha256": "706614b3a52974794e1b2a902781a3abd04f9edf036d51bf0fef0575dafbdbb4",
-      "size_bytes": 9433
+      "sha256": "18dcad8d2d4e58b233290bc4adb8023d2ec954248f7979db6a13cbd6492febe0",
+      "size_bytes": 9525
     }
   }
 }
