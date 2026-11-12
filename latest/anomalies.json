@@ -1,9 +1,3 @@
 [
-	{"h3_res6_id":"86946605fffffff","anomaly_date":"2026-11-11","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.1,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"},
-	{"h3_res6_id":"86ed84a4fffffff","anomaly_date":"2026-11-11","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.1,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"},
-	{"h3_res6_id":"86b224967ffffff","anomaly_date":"2026-11-11","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.1,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"},
-	{"h3_res6_id":"86dd59cafffffff","anomaly_date":"2026-11-11","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.1,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"},
-	{"h3_res6_id":"86cea800fffffff","anomaly_date":"2026-11-11","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.0,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"},
-	{"h3_res6_id":"862ea6ab7ffffff","anomaly_date":"2026-11-11","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.0,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"},
-	{"h3_res6_id":"86768685fffffff","anomaly_date":"2026-11-11","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.1,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"}
+	{"h3_res6_id":"86dd55a5fffffff","anomaly_date":"2026-11-12","human_event_count":0,"max_thermal_intensity_mw":0.0,"max_seismic_magnitude":5.4,"dominant_cameo_event_code":null,"anomaly_type":"Major Seismic Event"}
 ]
