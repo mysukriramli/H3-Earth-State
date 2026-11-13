@@ -1,15 +1,23 @@
 # H3-Earth-State Full Situational Briefing
-Generated UTC: 2026-11-12T19:27:07.797877+00:00
-Active Anomaly Pool: 1 | Active Task Pool: 1
+Generated UTC: 2026-11-13T04:43:57.060578+00:00
+Active Anomaly Pool: 2 | Active Task Pool: 2
 
 ## Current High-Priority Autonomous Directives
-### [P2_ELEVATED] task_86dd55a5fffffff_20261112
-- **Target Hexagon:** `86dd55a5fffffff`
+### [P0_CRITICAL] task_863f5486fffffff_20261113
+- **Target Hexagon:** `863f5486fffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Hellenic Trench
+- **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [Hellenic Trench] (Hexagon: 863f5486fffffff). Magnitude 5.1 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
+- **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
+
+### [P2_ELEVATED] task_8696ebc27ffffff_20261113
+- **Target Hexagon:** `8696ebc27ffffff`
 - **Anomaly Type:** Major Seismic Event
 - **Affected Infrastructure:** Remote
-- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 86dd55a5fffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 8696ebc27ffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
 - **Required Capabilities:** `telemetry_verification, sensor_recalibration`
 
 ## Active Physical & Political Disruptions
 
-- `86dd55a5fffffff` | **Major Seismic Event** | Quake: M5.4 | Thermal: 0.0 MW | Human Events: 0
+- `8696ebc27ffffff` | **Major Seismic Event** | Quake: M5.0 | Thermal: 0.0 MW | Human Events: 0
+- `863f5486fffffff` | **Major Seismic Event** | Quake: M5.1 | Thermal: 0.0 MW | Human Events: 0
