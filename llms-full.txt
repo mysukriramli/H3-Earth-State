@@ -1,8 +1,22 @@
 # H3-Earth-State Full Situational Briefing
-Generated UTC: 2026-11-21T05:17:18.884752+00:00
-Active Anomaly Pool: 1 | Active Task Pool: 1
+Generated UTC: 2026-11-21T14:03:09.210501+00:00
+Active Anomaly Pool: 5 | Active Task Pool: 5
 
 ## Current High-Priority Autonomous Directives
+### [P0_CRITICAL] task_86955a907ffffff_20261121
+- **Target Hexagon:** `86955a907ffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Remote
+- **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [unpopulated/remote region] (Hexagon: 86955a907ffffff). Magnitude 6.8 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
+- **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
+
+### [P0_CRITICAL] task_868e644efffffff_20261121
+- **Target Hexagon:** `868e644efffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Carhuamayo District, Yanaqucha (Junín)
+- **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [Carhuamayo District, Yanaqucha (Junín)] (Hexagon: 868e644efffffff). Magnitude 5.0 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
+- **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
+
 ### [P0_CRITICAL] task_868e64457ffffff_20261121
 - **Target Hexagon:** `868e64457ffffff`
 - **Anomaly Type:** Major Seismic Event
@@ -10,6 +24,24 @@ Active Anomaly Pool: 1 | Active Task Pool: 1
 - **Objective:** INITIATE RAPID SEISMIC RESPONSE: Confirm structural integrity of critical infrastructure near [Yanaqucha (Junín), Carhuamayo District] (Hexagon: 868e64457ffffff). Magnitude 6.7 detected. Task high-resolution Synthetic Aperture Radar (SAR) pass.
 - **Required Capabilities:** `structural_damage_assessment, emergency_dispatch, orbital_radar_tasking`
 
+### [P2_ELEVATED] task_8624829b7ffffff_20261121
+- **Target Hexagon:** `8624829b7ffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Remote
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 8624829b7ffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
+
+### [P2_ELEVATED] task_862f5c22fffffff_20261121
+- **Target Hexagon:** `862f5c22fffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Remote
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 862f5c22fffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
+
 ## Active Physical & Political Disruptions
 
+- `86955a907ffffff` | **Major Seismic Event** | Quake: M6.8 | Thermal: 0.0 MW | Human Events: 0
+- `868e644efffffff` | **Major Seismic Event** | Quake: M5.0 | Thermal: 0.0 MW | Human Events: 0
+- `8624829b7ffffff` | **Major Seismic Event** | Quake: M5.9 | Thermal: 0.0 MW | Human Events: 0
 - `868e64457ffffff` | **Major Seismic Event** | Quake: M6.7 | Thermal: 0.0 MW | Human Events: 0
+- `862f5c22fffffff` | **Major Seismic Event** | Quake: M5.2 | Thermal: 0.0 MW | Human Events: 0
