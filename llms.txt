@@ -3,10 +3,10 @@
 > Maintained autonomously via GitHub Actions. Updated every 6 hours.
 
 ## Live Operational Statistics
-- **Last Synchronized (UTC):** 2026-11-21T14:03:09.210501+00:00
+- **Last Synchronized (UTC):** 2026-11-21T22:42:10.970317+00:00
 - **Active Anomalies (Today):** 5
 - **Pending Autonomous Tasks:** 5
-- **Historical Observations:** 23,472 rows across 1,282 hexagons
+- **Historical Observations:** 23,484 rows across 1,291 hexagons
 - **Temporal Range:** 2026-10-20 to 2026-11-21
 
 ## Canonical Endpoints (Zero-Auth, Fastly Edge CDN)
