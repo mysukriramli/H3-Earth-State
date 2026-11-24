@@ -3,11 +3,11 @@
 > Maintained autonomously via GitHub Actions. Updated every 6 hours.
 
 ## Live Operational Statistics
-- **Last Synchronized (UTC):** 2026-11-23T17:10:49.902657+00:00
-- **Active Anomalies (Today):** 4
-- **Pending Autonomous Tasks:** 4
-- **Historical Observations:** 26,358 rows across 1,357 hexagons
-- **Temporal Range:** 2026-10-20 to 2026-11-23
+- **Last Synchronized (UTC):** 2026-11-24T03:43:32.909279+00:00
+- **Active Anomalies (Today):** 1
+- **Pending Autonomous Tasks:** 1
+- **Historical Observations:** 27,836 rows across 1,376 hexagons
+- **Temporal Range:** 2026-10-20 to 2026-11-24
 
 ## Canonical Endpoints (Zero-Auth, Fastly Edge CDN)
 - [Active Anomaly Feed (JSON)](latest/anomalies.json): High-confidence 3-sigma cross-domain disruptions.

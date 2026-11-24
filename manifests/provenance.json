@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-11-23T17:10:49.955935+00:00",
+    "generated_at": "2026-11-24T03:43:32.998267+00:00",
     "schema_version": "1.1.0",
     "license": "CC-BY-4.0",
     "repository": "H3-Earth-State",
@@ -14,36 +14,36 @@
   },
   "artifacts": {
     "latest/world_state.json": {
-      "sha256": "0f55bf04c7ec9ede35d391c2d4a8456a4489f8996f20a9174ad398ce5080a11f",
-      "size_bytes": 246200
+      "sha256": "9aff51ff3374e884f08fabdc17dc261014edab57dd57e6dbbd01900c7a4b14e8",
+      "size_bytes": 250091
     },
     "latest/anomalies.json": {
-      "sha256": "f8ef8bbf473c0611336eeb3bb80d9196f702896ea809d2ba407c2a24ae7eafa6",
-      "size_bytes": 859
+      "sha256": "e6143778459d9b1386201bd127fe91f976e5b30530fb0460a0651bb04ce21834",
+      "size_bytes": 217
     },
     "latest/evals.jsonl": {
-      "sha256": "1cd13ed31140681e5e00c744f274495f5971f3678b6beeeaeaf9f927f0292eef",
-      "size_bytes": 1876
+      "sha256": "2bffba14e8e07404ecb9abbbf1ed960459e0057c01883126a70475350ce1753b",
+      "size_bytes": 469
     },
     "latest/entities.jsonl": {
-      "sha256": "863d9043c2537c7b6bbc64b138a37c2a33219927024e8721acb6b17ecbccc843",
-      "size_bytes": 1164
+      "sha256": "71af0ba1427f7b828d2a10cad7dc05978af9311dcb3d218456adc195571485ff",
+      "size_bytes": 300
     },
     "latest/tasks.jsonl": {
-      "sha256": "868afc22e3f45551e2dcc0eaae69a4aa6a748297aff9a178fe9255d84fa70917",
-      "size_bytes": 2459
+      "sha256": "31c2b3cf2d14180687c0fd76df2df87fedf97209b74f1b2d7d923b8dd6f001e0",
+      "size_bytes": 688
     },
     "latest/embeddings.parquet": {
-      "sha256": "0d72e392a4b8d7d66e3e74aa28b6570568d27f015adae3d1563e6ba6fbdb4b02",
-      "size_bytes": 13002
+      "sha256": "1945dbddadb7307a92443739bacf63f8f5d2585f76a78385313e6bbac8c87cd3",
+      "size_bytes": 13111
     },
     "latest/health.json": {
-      "sha256": "fb7c0d0e60cb7740a0a11de86750e9ed527f091e0637914386109d13def850c9",
-      "size_bytes": 332
+      "sha256": "e81b4a73f2a76bea90019e415c0c61db41545f44e09dd77c0f1b16897e98f93a",
+      "size_bytes": 330
     },
-    "snapshots/year=2026/month=11/2026-11-23.parquet": {
-      "sha256": "e1ccd1408a73cdf6ab46465715f03f4af7ff86c0087dbfe904754b55aee136fe",
-      "size_bytes": 14743
+    "snapshots/year=2026/month=11/2026-11-24.parquet": {
+      "sha256": "bb1b7d652709cd501020da0af65b3e754d81b50f83e2143e62b9669b5dd3d2ef",
+      "size_bytes": 14874
     }
   }
 }
