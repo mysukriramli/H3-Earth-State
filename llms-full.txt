@@ -1,47 +1,15 @@
 # H3-Earth-State Full Situational Briefing
-Generated UTC: 2026-11-26T16:14:50.878242+00:00
-Active Anomaly Pool: 5 | Active Task Pool: 5
+Generated UTC: 2026-11-27T01:25:20.494788+00:00
+Active Anomaly Pool: 1 | Active Task Pool: 1
 
 ## Current High-Priority Autonomous Directives
-### [P2_ELEVATED] task_86ba2064fffffff_20261126
-- **Target Hexagon:** `86ba2064fffffff`
+### [P2_ELEVATED] task_869ed1447ffffff_20261127
+- **Target Hexagon:** `869ed1447ffffff`
 - **Anomaly Type:** Major Seismic Event
 - **Affected Infrastructure:** Remote
-- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 86ba2064fffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
-- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
-
-### [P2_ELEVATED] task_8695a338fffffff_20261126
-- **Target Hexagon:** `8695a338fffffff`
-- **Anomaly Type:** Major Seismic Event
-- **Affected Infrastructure:** Remote
-- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 8695a338fffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
-- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
-
-### [P2_ELEVATED] task_864824d27ffffff_20261126
-- **Target Hexagon:** `864824d27ffffff`
-- **Anomaly Type:** Major Seismic Event
-- **Affected Infrastructure:** Remote
-- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 864824d27ffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
-- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
-
-### [P2_ELEVATED] task_86ba20687ffffff_20261126
-- **Target Hexagon:** `86ba20687ffffff`
-- **Anomaly Type:** Major Seismic Event
-- **Affected Infrastructure:** Remote
-- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 86ba20687ffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
-- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
-
-### [P2_ELEVATED] task_869b7625fffffff_20261126
-- **Target Hexagon:** `869b7625fffffff`
-- **Anomaly Type:** Major Seismic Event
-- **Affected Infrastructure:** Remote
-- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 869b7625fffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 869ed1447ffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
 - **Required Capabilities:** `telemetry_verification, sensor_recalibration`
 
 ## Active Physical & Political Disruptions
 
-- `86ba2064fffffff` | **Major Seismic Event** | Quake: M5.0 | Thermal: 0.0 MW | Human Events: 0
-- `8695a338fffffff` | **Major Seismic Event** | Quake: M5.5 | Thermal: 0.0 MW | Human Events: 0
-- `864824d27ffffff` | **Major Seismic Event** | Quake: M5.7 | Thermal: 0.0 MW | Human Events: 0
-- `86ba20687ffffff` | **Major Seismic Event** | Quake: M5.2 | Thermal: 0.0 MW | Human Events: 0
-- `869b7625fffffff` | **Major Seismic Event** | Quake: M5.2 | Thermal: 0.0 MW | Human Events: 0
+- `869ed1447ffffff` | **Major Seismic Event** | Quake: M5.1 | Thermal: 0.0 MW | Human Events: 0
