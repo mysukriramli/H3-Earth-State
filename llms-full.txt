@@ -1,8 +1,22 @@
 # H3-Earth-State Full Situational Briefing
-Generated UTC: 2026-11-27T01:25:20.494788+00:00
-Active Anomaly Pool: 1 | Active Task Pool: 1
+Generated UTC: 2026-11-27T16:00:13.177069+00:00
+Active Anomaly Pool: 3 | Active Task Pool: 3
 
 ## Current High-Priority Autonomous Directives
+### [P2_ELEVATED] task_869e10aa7ffffff_20261127
+- **Target Hexagon:** `869e10aa7ffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Remote
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 869e10aa7ffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
+
+### [P2_ELEVATED] task_86ce0111fffffff_20261127
+- **Target Hexagon:** `86ce0111fffffff`
+- **Anomaly Type:** Major Seismic Event
+- **Affected Infrastructure:** Remote
+- **Objective:** ROUTINE SENSOR AUDIT: Anomaly registered in Hexagon 86ce0111fffffff near [unpopulated/remote region]. Cross-verify secondary satellite passes to confirm signal validity.
+- **Required Capabilities:** `telemetry_verification, sensor_recalibration`
+
 ### [P2_ELEVATED] task_869ed1447ffffff_20261127
 - **Target Hexagon:** `869ed1447ffffff`
 - **Anomaly Type:** Major Seismic Event
@@ -12,4 +26,6 @@ Active Anomaly Pool: 1 | Active Task Pool: 1
 
 ## Active Physical & Political Disruptions
 
+- `869e10aa7ffffff` | **Major Seismic Event** | Quake: M5.0 | Thermal: 0.0 MW | Human Events: 0
+- `86ce0111fffffff` | **Major Seismic Event** | Quake: M5.0 | Thermal: 0.0 MW | Human Events: 0
 - `869ed1447ffffff` | **Major Seismic Event** | Quake: M5.1 | Thermal: 0.0 MW | Human Events: 0
