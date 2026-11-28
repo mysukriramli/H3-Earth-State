@@ -1,10 +1,10 @@
 {
-  "status": "HEALTHY",
-  "timestamp_utc": "2026-11-27T16:00:11Z",
+  "status": "DEGRADED",
+  "timestamp_utc": "2026-11-28T00:58:27Z",
   "upstream_providers": {
     "USGS_SEISMIC": true,
     "NASA_FIRMS": true,
-    "GDELT_GEOPOLITICAL": true
+    "GDELT_GEOPOLITICAL": false
   },
   "circuit_states": {
     "USGS_SEISMIC": "CLOSED",
